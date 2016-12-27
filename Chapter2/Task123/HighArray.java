@@ -54,13 +54,13 @@ class HighArray {
     }
 
     // Task#1
-    public long getMax(){ // O(N) - complexity in unsorted algorithm
-        if (this.nElems == 0){
+    public long getMax() { // O(N) - complexity in unsorted algorithm
+        if (this.nElems == 0) {
             return -1;
         }
         long max = a[0];
-        for (int i = 0; i<this.nElems; i++){
-            if ( a[i] > max){
+        for (int i = 0; i < this.nElems; i++) {
+            if (a[i] > max) {
                 max = a[i];
             }
         }
@@ -69,21 +69,21 @@ class HighArray {
 
     // Task#2  O(N) [O(N+N)]
     // Writing this method from scratch
-    public long removeMax(){
-        if (this.nElems == 0){
+    public long removeMax() {
+        if (this.nElems == 0) {
             return -1;
         }
         long max = a[0];
         int indexMax = 0;
-        for (int i = 0; i<this.nElems; i++){
-            if ( a[i] > max){
+        for (int i = 0; i < this.nElems; i++) {
+            if (a[i] > max) {
                 max = a[i];
                 indexMax = i;
             }
         }
 
-        for (int i=indexMax; i<this.nElems; i++){
-            a[i]=a[i+1];
+        for (int i = indexMax; i < this.nElems; i++) {
+            a[i] = a[i + 1];
         }
         --this.nElems;
         return max;
@@ -92,4 +92,32 @@ class HighArray {
     public int getnElems() {
         return nElems;
     }
+
+    public long[] noDups(){
+        for (int i=0; i < nElems; i++){
+            long number = a[i];
+            for (int j = 0; j < nElems; j++){
+                if (j != i && a[j] == a[i]){
+                    deleteByIndex(j);
+                }
+            }
+        }
+        return a;
+    }
+
+    public long deleteByIndex(int index){
+        for (int j = index; j < this.nElems; j++){
+            a[j] = a[j+1];
+        }
+        --this.nElems;
+        return a[index];
+    }
+
+    public void initialize(long [] a){
+        for (int i=0; i < a.length; i++){
+            this.a[i] = a[i];
+            this.nElems++;
+        }
+    }
+
 }

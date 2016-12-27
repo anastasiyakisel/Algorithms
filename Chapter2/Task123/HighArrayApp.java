@@ -1,28 +1,11 @@
-/*
- * Decompiled with CFR 0_118.
- * 
- * Could not load the following classes:
- *  HighArray
- */
-import java.io.PrintStream;
-
 class HighArrayApp {
     HighArrayApp() {
     }
 
     public static void main(String[] arrstring) {
-        int n = 100;
-        HighArray highArray = new HighArray(n);
-        highArray.insert(77);
-        highArray.insert(44);
-        highArray.insert(55);
-        highArray.insert(22);
-        highArray.insert(88);
-        highArray.insert(11);
-        highArray.insert(0);
-        highArray.insert(99);
-        highArray.insert(66);
-        highArray.insert(33);
+        HighArray highArray = new HighArray(100);
+        long [] ar = {77, 44, 55, 22, 88, 11, 0, 99, 66, 33};
+        highArray.initialize(ar);
         highArray.display();
 
 
@@ -44,16 +27,15 @@ class HighArrayApp {
         for (int j = 0; j < a.length; j++){
             System.out.print(a[j]+" ");
         }
+        System.out.println();
 
-        /*int n2 = 35;
-        if (highArray.find((long)n2)) {
-            System.out.println("Found " + n2);
-        } else {
-            System.out.println("Can't find " + n2);
-        }
-        highArray.delete(0);
-        highArray.delete(55);
-        highArray.delete(99);
-        highArray.display();*/
+        //Task#6
+        HighArray highArray2 = new HighArray(100);
+        long [] b = {1, 3, 5, 99, 6, 3, 88, 1, 34, 67, 12, 99};
+        highArray2.initialize(b);
+        highArray2.noDups();
+        highArray2.display();
+
+
     }
 }
