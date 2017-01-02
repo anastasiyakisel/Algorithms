@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.stream.IntStream;
+
 class ArrayIns
 {
     private long[] a;                 // ref to array a
@@ -38,7 +41,7 @@ class ArrayIns
             a[in] = temp;                  // insert marked item
         }  // end for
     }  // end insertionSort()
-//--------------------------------------------------------------
+
 
     public long median(){
         insertionSort();
@@ -53,6 +56,37 @@ class ArrayIns
         }
         return median;
 
+    }
+
+    // Task#3 : Remove duplicates in sorted array. Shift all other elements only 1 time.
+    public void noDups(){
+        insertionSort();
+        int [] indexesOfDuplicates = new int[100];
+        int duplicatesSize = 0;
+        for (int i=0; i < nElems; i++){
+            if (a[i] == a[i+1]){
+                indexesOfDuplicates[duplicatesSize] = i+1;
+                duplicatesSize++;
+            }
+        }
+        // Copying is 3 times faster than transposition. All non-duplicate elements
+        // will be moved only 1 time.
+        long [] copyArray = new long [nElems - duplicatesSize];
+        int sh = 0; //counter of loop , used for copying
+        int dupSh = 0;
+        int aSh = 0;
+        while (sh < nElems - duplicatesSize){
+            if (indexesOfDuplicates[dupSh] != aSh){
+                copyArray[sh] = this.a[aSh];
+                sh ++;
+                aSh ++;
+            } else {
+                dupSh ++;
+                aSh ++;
+            }
+        }
+        this.a = copyArray;
+        this.nElems = nElems - duplicatesSize;
     }
 
 }  // end class ArrayIns
